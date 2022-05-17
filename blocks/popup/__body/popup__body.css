@@ -1,4 +1,4 @@
-.popap__body {
+.popup__body {
     font-family: 'Inter', 'Arial', sans-serif;
     margin: 0 auto;
     width: 430px;
@@ -18,11 +18,9 @@
 }
 
 @media screen and (max-width:740px) {
-    .popap__body {
+    .popup__body {
         padding: 25px 22px;
         width: 282px;
         height: 322px;
-        border-radius: 10px;
-        background-color: #ffffff;
     }
 }

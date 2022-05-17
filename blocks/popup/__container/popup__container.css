@@ -1,4 +1,4 @@
-.popap__container {  
+.popup__container {  
     position: relative;
     width: 500px;
     height: 400px;
@@ -8,9 +8,8 @@
 }
 
 @media screen and (max-width:740px) {
-    .popap__container {  
+    .popup__container {  
         width: 282px;
         height: 382px;
-        top:285px;       
         }
 }

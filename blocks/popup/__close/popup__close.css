@@ -1,4 +1,4 @@
-.popap__close {
+.popup__close {
     margin: 0;
     padding: 0;
     background-color: transparent;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width:740px) {
-    .popap__close{
+    .popup__close{
         width: 20px;
         height: 20px;
     }

@@ -1,4 +1,4 @@
-.popap__save {
+.popup__save {
     display: block;
     align-self: center;
     border-radius: 2px;
@@ -12,12 +12,12 @@
     cursor: pointer;
 }
 
-.popap__save:hover {
+.popup__save:hover {
     opacity: .8;
 }
 
 @media screen and (max-width:740px) {
-    .popap__save {
+    .popup__save {
         width: 238px;
         height: 46px;
         font-size: 14px;

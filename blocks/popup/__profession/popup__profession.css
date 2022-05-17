@@ -1,4 +1,4 @@
-.popap__profession {
+.popup__profession {
     margin: 0;
     font-family: 'Inter', 'Arial', sans-serif;
     border:none;
@@ -12,7 +12,7 @@
     padding-bottom: 13px;
 }
 @media screen and (max-width:740px) {
-    .popap__profession {
+    .popup__profession {
         width: 238px;
     }
 }

@@ -1,4 +1,4 @@
-.popap__name {
+.popup__name {
     font-family: 'Inter', 'Arial', sans-serif;
     border:none;    
     width: 358px;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width:740px) {
-    .popap__name {
+    .popup__name {
         width: 238px;
         padding-top: 30px;
         }
