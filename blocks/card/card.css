@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 282px;
+    height: 361px;
+    margin: 0;
+}
+
+
+@media screen and (max-width: 800px) {
+    .card {
+        margin: 0 auto;
+        padding-bottom: 20px ;
+    }
+
+}

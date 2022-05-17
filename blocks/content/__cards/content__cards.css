@@ -1,0 +1,10 @@
+.content__cards {
+    margin: 0 auto;
+    padding: 47px 0 66px;
+}
+
+@media screen and (max-width: 800px) {
+    .content__cards {
+         padding: 36px 0 48px;
+    }
+}

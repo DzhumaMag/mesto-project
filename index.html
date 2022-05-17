@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+</head>
+<body class="page">
+    <div class="page__container">
+        <header class="header page__header">
+            <div class="header__logo"></div>
+        </header>
+        <main class="content">
+            <section class="profile content__profile">
+                <div class="profile__info">
+                    <img class="profile__photo" src="./images/image.jpg" alt="мужчина в красной шапке"></img>
+                    <div class="profile__about">
+                        <div class="profile__name-edit"> 
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <button type="button" class="profile__button-edit focus"></button>
+                        </div>
+                        <p class="profile__profession">Исследователь океана</p>
+                    </div>
+                </div>
+                <button type="button" class="profile__add-button focus"></button>
+            </section>
+            <section class="cards content__cards">
+                <article class="card">
+                        <img class="card__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
+                        <div class="card__name">
+                            <h2 class="card__place">Карачаевск </h2>
+                            <button type="button" class="card__like card__like_active"></button>
+                        </div>
+                    </article>
+                <article class="card">
+                        <img class="card__photo" src="./images/kirill-pershin-1404681-unsplash.jpg">
+                        <div class="card__name">
+                            <h2 class="card__place">Гора Эльбрус</h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </article>
+                <article class="card">
+                        <img class="card__photo" src="./images/kirill-pershin-1556355-unsplash.jpg">
+                        <div class="card__name">
+                            
+                            <h2 class="card__place">Домбай</h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </article>
+                <article class="card">
+                        <img class="card__photo" src="./images/kirill-pershin-1404681-unsplash.jpg">
+                        <div class="card__name">
+                            <h2 class="card__place">Гора Эльбрус</h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </article>
+                <article class="card">
+                        <img class="card__photo"  src="./images/kirill-pershin-1556355-unsplash.jpg">
+                        <div class="card__name">
+                            <h2 class="card__place">Домбай</h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </article>
+                <article class="card">
+                        <img class="card__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
+                        <div class="card__name">
+                            <h2 class="card__place">Карачаево-Ч...</h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </article>
+            </section>
+        </main>
+        <footer class="footer page__footer">
+            <p class="footer__copyright">© 2020 Mesto Russia</p></footer>
+    </div>
+        <div class="popap popap_opened"> 
+            <div class="popap__container">
+                <button type="button" class="popap__close focus"></button>
+                <form class="popap__body">
+                    <h2 class="popap__title">Редактировать профиль</h2>
+                    <input type="text" placeholder="Жак-Ив Кусто" name="name" value="Жак-Ив Кусто" class="popap__name">
+                    <input type="text" placeholder="исследователь океана" name="profession" value="Исследователь океана" class="popap__profession">
+                    <button type="button" class="popap__save">Сохранить</button>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

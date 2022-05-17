@@ -1,0 +1,13 @@
+.profile__name-edit {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+@media screen and (max-width: 400px ) {
+    .profile__name-edit {
+        justify-content: center;
+        padding: 22px auto 14px; 
+    }
+}

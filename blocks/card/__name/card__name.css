@@ -1,0 +1,9 @@
+.card__name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    background-color: #ffffff;
+    position: relative;
+}
