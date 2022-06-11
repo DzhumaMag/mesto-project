@@ -1,7 +1,9 @@
 .card__photo {
     margin: 0;
-    width: 282px;
-    height: 282px;
+    max-width: 282px;
+    max-height: 282px;
+    min-width: 282px;
+    min-height: 282px;
     grid-row: auto;
     border-radius: 10px 10px 0 0;
 }

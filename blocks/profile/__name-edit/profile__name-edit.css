@@ -5,7 +5,7 @@
     gap: 18px;
 }
 
-@media screen and (max-width: 400px ) {
+@media screen and (max-width: 600px ) {
     .profile__name-edit {
         justify-content: center;
         padding: 22px auto 14px; 

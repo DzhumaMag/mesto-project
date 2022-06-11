@@ -7,7 +7,7 @@
     border-radius: 10px;
     background-color: #ffffff;
     display: flex;
-    align-items: center;
+    align-items: left;
     position: absolute;
     flex-direction: column;
     justify-content: space-between;

@@ -11,12 +11,12 @@
     padding-bottom: 13px;
     border-bottom:1px solid rgba(0, 0, 0, .2);
     display: block;
-    padding: 0 px ;
+
+
 }
 
 @media screen and (max-width:740px) {
     .popup__name {
         width: 238px;
-        padding-top: 30px;
         }
 }
