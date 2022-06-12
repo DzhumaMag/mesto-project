@@ -2,7 +2,7 @@
     display: flex;
 }
 
-@media screen and (max-width: 440px ) {
+@media screen and (max-width: 600px ) {
     .profile__info {
         flex-direction: column;
         justify-content: center;

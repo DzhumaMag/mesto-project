@@ -1,8 +1,8 @@
 const buttonEdit = document.querySelector('.profile__button-edit');
-const closeButton = document.querySelector('.popup__close');
-const popup = document.querySelector('.popup');
+const buttonClose = document.querySelector('.popup__close');
+const popupProfile = document.querySelector('.popup_type_profile-edit');
 const buttonEditPlace = document.querySelector('.profile__add-button');
-const closeButtonPlace = document.querySelector('.popup__close_place');
+const buttonPlaceClose = document.querySelector('.popup__close_place');
 const popupPlace = document.querySelector('.popup_place');
 const formPlace = document.querySelector('.popup_type_place');
 const cardList = document.querySelector('.cards')
@@ -10,13 +10,15 @@ const cardTemplate = document.querySelector('.card-template').content.querySelec
 const formProfile = document.querySelector('.popup_type_profile');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_profession');
-const closeZoom = document.querySelector('.popup__close_type_zoom');
+const zoomCloseButton = document.querySelector('.popup__close_type_zoom');
 const zoom = document.querySelector('.popup_type_zoom');
 const popupImage = document.querySelector('.popup__image');
-const popupZoomTitle = document.querySelector('.popup__title_type_zoom');
-
+const popupZoomTitle = document.querySelector('.popup__title_type_zoom')
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputLinkPlace = document.querySelector('.popup__input_type_link');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
@@ -24,25 +26,15 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
-buttonEdit.addEventListener("click", function(){
-  popup.classList.add('popup_opened');
-});
-buttonEditPlace.addEventListener("click", function(){
-  popupPlace.classList.add('popup_opened');
-});
+buttonEdit.addEventListener("click", ()=> openPopup(popupProfile));
 
+buttonEditPlace.addEventListener("click", ()=> openPopup(popupPlace));
 
-closeButton.addEventListener("click", function(){
-  popup.classList.remove('popup_opened'); 
-})
+buttonClose.addEventListener("click", ()=> closePopup(popupProfile));
 
-closeButtonPlace.addEventListener("click", function(){
-  popupPlace.classList.remove('popup_opened'); 
-})
+buttonPlaceClose.addEventListener("click", ()=> closePopup(popupPlace));
 
-closeZoom.addEventListener("click", function() {
-  zoom.classList.remove('popup_opened');
-});
+zoomCloseButton.addEventListener("click", ()=> closePopup(popupImage) );
 
 const initialCards = [
     {
@@ -81,25 +73,23 @@ const createCard = function(data) {
     const cardPlace = cardElement.querySelector('.card__place');
     const cardTrash = cardElement.querySelector('.card__trash');
     const cardLike = cardElement.querySelector('.card__like');
-  
 
-    cardTrash.addEventListener("click", ()=> deleteImage(cardElement));
-    
     cardPhoto.src = data.link;
+    cardPhoto.alt = data.name;
     cardPlace.textContent = data.name;
 
       cardPhoto.addEventListener("click", function() {
       popupImage.src = cardPhoto.src;
       popupZoomTitle.textContent = cardPlace.textContent;
       zoom.classList.add('popup_opened');
-      });
-      // closeZoom.addEventListener("click", function() {
-      //   zoom.classList.remove('popup_opened');
-      // });
-
+      });   
       cardLike.addEventListener("click", function(evt) {
         evt.target.classList.toggle('card__like_active');
-      });
+      }); 
+
+      zoomCloseButton.addEventListener("click", ()=> closePopup(popupImage)); // запуталась, не могу реализовать закрытие картинки с попапом увелениченного фото
+      cardTrash.addEventListener("click", ()=> deleteImage(cardElement));
+      closePopup(popupImage); 
 
     return cardElement;
 };
@@ -112,7 +102,6 @@ initialCards.forEach(function(item) {
     addCard(item, cardList);
 });
 
-
 inputName.value = profileName.textContent;
 inputJob.value = profileJob.textContent;
 
@@ -120,21 +109,27 @@ function fixProfile(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  closePopup(popup);
+  closePopup(popupProfile);
 }
+formProfile.reset();
+
 
 formProfile.addEventListener("submit", fixProfile);
 
+
 const renderCard = function(evt) {
   evt.preventDefault();
-  evt.target.reset();
-  const inputPlace = evt.target.querySelector('.popup__input_type_place');
-  const inputLinkPlace = evt.target.querySelector('.popup__input_type_link');
+
   const cardInfo = { 
     name: inputPlace.value, 
     link: inputLinkPlace.value,
   };
+
+  popupImage.alt = inputPlace.value;
+  formPlace.reset();
+
   addCard(cardInfo, cardList);
   closePopup(popupPlace);
+
 }
 formPlace.addEventListener("submit", renderCard);

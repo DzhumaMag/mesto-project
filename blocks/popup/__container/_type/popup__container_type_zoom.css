@@ -1,7 +1,5 @@
 .popup__container_type_zoom {  
     width: auto;
     height: auto;
-    max-width: 75vw;
-    min-height: 75vh;
     position: relative;
 }
