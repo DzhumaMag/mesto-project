@@ -120,8 +120,6 @@ function fixProfile(evt) {
     profileJob.textContent = inputJob.value;
     closePopup(profilePopup);
 }
-formProfile.reset();
-
 
 formProfile.addEventListener("submit", fixProfile);
 
@@ -134,7 +132,6 @@ const cardInfo = {
     link: inputLinkPlace.value,
   };
 
-  imageBigSize.alt = inputPlace.value;
   formPlace.reset();
 
   addCard(cardInfo, cardList);
