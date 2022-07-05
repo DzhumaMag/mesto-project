@@ -1,27 +1,17 @@
-const formPlace = document.querySelector('.popup_type_place');
-const formProfile = document.querySelector('.popup_type_profile');
-
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save',
-    inactiveButtonClass: 'popup__save_invalid',
-    inputErrorClass: 'popup__input_state_invalid',
-    errorClass: 'form__input-error'
-  };
+import { validationConfig } from "./utils";
 
 //показать ошибку
 const showError = (errorElement, inputElement, config) => {
     inputElement.classList.add(config.inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
   }
+
 // скрыть ошибку
 const hideError = (errorElement, inputElement, config) => {
     inputElement.classList.remove(config.inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
   }
   
-
 //проверяет инпут на валидность 
   
 const checkInputValidity = (inputElement, formElement, config) => {
@@ -34,7 +24,6 @@ const checkInputValidity = (inputElement, formElement, config) => {
       }
   }
   
-
 //вкл выкл кнопки 
 const toggleButtonState = (button, isActive = false, config) => {
     if(isActive) {
@@ -78,4 +67,4 @@ const enableValidation = (config) => {
   
 enableValidation(validationConfig);
 
-export {formPlace, formProfile, showError, hideError, validationConfig, checkInputValidity, toggleButtonState, setEventListener, enableValidation}
+export {showError, hideError, checkInputValidity, toggleButtonState, setEventListener, enableValidation}

@@ -1,30 +1,30 @@
-import {formProfile, validationConfig, checkInputValidity, toggleButtonState} from './validate';
-import { openPopup, closePopup } from './utils';
-const profilePopup = document.querySelector('.popup_type_profile-edit');
-const inputJob = document.querySelector('.popup__input_type_profession');
-const profileName = document.querySelector('.profile__name');
-const inputName = document.querySelector('.popup__input_type_name');
-const profileJob = document.querySelector('.profile__profession');
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
+    popup.addEventListener('click', closeByOverlay);
+  }
 
-function openProfilePopup() { 
-    const buttonSave = document.querySelector('.popup__save_button_save');
-    inputName.value = profileName.textContent; 
-    inputJob.value = profileJob.textContent; 
-    checkInputValidity(inputName, formProfile,validationConfig);
-    checkInputValidity(inputJob, formProfile,validationConfig);
-    toggleButtonState(buttonSave, true, validationConfig);
+  function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
+  }
 
-    openPopup(profilePopup);
-  };
 
-function fixProfile(evt) {
-    evt.preventDefault();
+  function closeByOverlay(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if(evt.target.classList.contains('popup')) {
+      closePopup(popup)
+    } 
+  }
+  
+  function closePopupEsc(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if(evt.key === 'Escape'){
+      if(popup) {
+        closePopup(popup);
+      }
+    }
+  }
 
-    profileName.textContent = inputName.value;
-    profileJob.textContent = inputJob.value;
-
-    closePopup(profilePopup);
-}
-
-  export {profileJob, inputName, profileName , inputJob,  profilePopup, fixProfile, openProfilePopup};
+  export {openPopup, closePopup, closeByOverlay, closePopupEsc};
  
