@@ -1,0 +1,19 @@
+.card__like {
+    width: 22px;
+    height: 19px;
+    position: absolute;
+    top: 30px;
+    background-color: #ffffff;
+    right: 30px;
+    box-shadow: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    background-image: url(../../../images/heart.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.card__like:hover {
+    opacity: .5;
+}
