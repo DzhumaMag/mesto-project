@@ -40,7 +40,11 @@ getAllInfo()
   cards.reverse().forEach((data) => {
     addCard(data, cardList, userId)
   })
-});
+
+})
+.catch (err => {
+  console.log(err);
+})
 
 
 function openProfilePopup() { 
@@ -59,9 +63,12 @@ const handleChangeLikeStatus = (cardId, isLiked, cardElement) => {
     .then((dataFromServer) => {
       updateLikeState(cardElement, dataFromServer.likes, userId)
     })
+    .catch (err => {
+      console.log(err);
+    })
 }
 
-  const addCard = (data, container, userId) => {
+const addCard = (data, container, userId) => {
     const card = createCard(data, userId, handleChangeLikeStatus);
     container.prepend(card);
 }
@@ -82,10 +89,12 @@ const renderCard = (evt) => {
       addCard(dataFromServer, cardList, userId);
       toggleButtonState(buttonCreate, false, validationConfig);
       closePopup(placePopup);
-      loading(buttonCreate, false, false)
+      
   }) 
-  
-
+    .catch (err => {
+      console.log(err);
+  })
+  .finally(()=> loading(buttonCreate, false, false))
   
 }
 
@@ -94,19 +103,23 @@ const renderCard = (evt) => {
 function fixProfile(evt) {
     evt.preventDefault();
     loading(buttonSave, true);
-    profileName.textContent = inputName.value;
-    profileJob.textContent = inputJob.value;
-    let dataId = {
+
+    const dataId = {
       name: profileName.textContent, 
       about: profileJob.textContent, 
       link: 'users/me'}
 
-      editProfileInfo(dataId).then((dataFromServer)=> {
-      closePopup(profilePopup);
-      loading(buttonSave, false)
-  
+    editProfileInfo(dataId)
+      .then((dataFromServer)=> {
+        profileName.textContent = inputName.value,
+        profileJob.textContent = inputJob.value
+        closePopup(profilePopup);
+        
     } )
-
+      .catch (err => {
+        console.log(err);
+      })
+      .finally(()=> loading(buttonSave, false))
     
 }
 
@@ -117,7 +130,7 @@ function addAvatar(evt) {
   loading(buttonSaveAvatar, true)
   avatarImage.src = inputAvatar.value;
   avatarImage.alt = inputAvatar.name;
-  let dataId = {
+  const dataId = {
     avatar: avatarImage.src
   }
  
@@ -125,17 +138,22 @@ function addAvatar(evt) {
 
   editProfileImage(dataId)
     .then((dataFromServer) =>{
-  toggleButtonState(buttonSaveAvatar, false, validationConfig);
+    toggleButtonState(buttonSaveAvatar, false, validationConfig);
 
     avatarImage.src = dataFromServer.avatar
     formAvatar.reset();
     closePopup(avatarPopup);
-    loading(buttonSaveAvatar, false)
-  })}
+
+  })
+  .catch (err => {
+    console.log(err);
+  })
+  .finally(()=> loading(buttonSaveAvatar, false))
+}
   
 
 
-// getAllCards();
+
 formAvatar.addEventListener("submit", addAvatar);
 
 formProfile.addEventListener("submit", fixProfile);
@@ -143,4 +161,4 @@ formProfile.addEventListener("submit", fixProfile);
 formPlace.addEventListener("submit", renderCard);
 
 
-export { userId};
+export { userId };

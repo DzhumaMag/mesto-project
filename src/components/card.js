@@ -1,17 +1,17 @@
 import { openPopup } from "./modal";
 import { removeCard, likedCard } from "./api";
-
-
 import { cardTemplate, imageBigSize, popupZoomTitle, imagePopup } from "./utils";
-// import { data } from "autoprefixer";
-// import { getAllCards } from "./api";
 
 
 const deleteImage = (data, element) => {
     console.log(data);
-    removeCard(data._id).then((dataFromServer) => {
-        element.remove()
-    });
+    removeCard(data._id)
+        .then((dataFromServer) => {
+            element.remove()
+        })
+        .catch (err => {
+            console.log(err);
+        })   
 };
 
 const isLiked = (likeArray, userId) => {

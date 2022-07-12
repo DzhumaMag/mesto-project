@@ -6,21 +6,21 @@ function openPopup(popup) {
 
   function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.addEventListener('keydown', closePopupEsc);
-    popup.removeEventListener('click', closeByOverlay);
+    document.removeEventListener('keydown', closePopupEsc);
+
+
   }
 
 
   function closeByOverlay(evt) {
-    const popup = document.querySelector('.popup_opened');
     if(evt.target.classList.contains('popup')) {
       closePopup(popup)
     } 
   }
   
   function closePopupEsc(evt) {
-    const popup = document.querySelector('.popup_opened');
     if(evt.key === 'Escape'){
+    const popup = document.querySelector('.popup_opened');
       if(popup) {
         closePopup(popup);
       }
