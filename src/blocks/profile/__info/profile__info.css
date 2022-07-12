@@ -1,5 +1,8 @@
 .profile__info {
     display: flex;
+    position: relative;
+    /* z-index: ; */
+    
 }
 
 @media screen and (max-width: 800px ) {

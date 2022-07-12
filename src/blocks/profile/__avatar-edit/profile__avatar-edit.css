@@ -1,0 +1,31 @@
+.profile__avatar-edit {
+    padding: 0;
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+}
+
+.profile__avatar-edit:hover {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.profile__avatar-edit::before {
+    background-image: url(../../../images/pencil.svg);    
+    content: '';
+    width: 26px;
+    height: 26px;
+    display: none;
+     position: absolute; 
+    top: 50px;
+    left: 50px; 
+}
+
+.profile__avatar-edit:hover:before {
+    display: block;
+}

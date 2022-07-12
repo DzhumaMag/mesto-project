@@ -11,6 +11,7 @@
     font-weight: 400;
     cursor: pointer;
     border: none;
+    padding: 0;
 }
 
 .popup__save:hover {

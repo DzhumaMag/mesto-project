@@ -46,6 +46,13 @@ const imageBigSize = document.querySelector('.popup__image');
 const popupZoomTitle = document.querySelector('.popup__title_type_zoom');
 const placePopup = document.querySelector('.popup_place');
 const imagePopup = document.querySelector('.popup_type_zoom');
+const avatarPopup = document.querySelector('.popup__avatar');
+const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
+const buttonAvatarClose = document.querySelector('.popup__close_type_avatar');
+const buttonSaveAvatar = document.querySelector('.popup__save_button_avatar');
+const formAvatar = document.querySelector('.popup__body_type_avatar');
+const inputAvatar = document.querySelector('.popup__input_type_avatar');
+const avatarImage = document.querySelector('.profile__photo');
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -56,5 +63,19 @@ const validationConfig = {
   errorClass: 'form__input-error'
 };
 
+function loading(button, load, type = true) {
+  
+  if (load) {
+button.textContent = "Сохранение...";
+  } else {
+    if (type) {
+      button.textContent = "Сохранить";
+    } else {
+      button.textContent = "Создать";
+    }
+  }
+}
+
 export {initialCards, cardList, inputPlace, inputLinkPlace, buttonCreate, buttonClose, buttonEdit, buttonEditPlace, buttonPlaceClose, zoomCloseButton, profilePopup, 
-  inputJob, profileName, inputName, profileJob, buttonSave, formPlace, formProfile, cardTemplate, imageBigSize, popupZoomTitle, placePopup, imagePopup, validationConfig};
+  buttonEditAvatar, avatarPopup, inputJob, profileName, inputName, profileJob, buttonSave, formPlace, formProfile, cardTemplate, imageBigSize, 
+  buttonAvatarClose, buttonSaveAvatar, formAvatar, inputAvatar, avatarImage, popupZoomTitle, placePopup, imagePopup, validationConfig, loading};

@@ -27,6 +27,7 @@
     "cssnano": "^5.1.12",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
+    "node-fetch": "^3.2.6",
     "postcss-loader": "^7.0.0",
     "terser-webpack-plugin": "^5.3.3",
     "webpack": "^5.73.0",
@@ -35,6 +36,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.12",
+    "cross-fetch": "^3.1.5",
     "save-dev": "^0.0.1-security"
   }
 }

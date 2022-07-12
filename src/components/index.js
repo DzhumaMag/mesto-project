@@ -1,14 +1,16 @@
 import '../pages/index.css';
 
 import { initialCards, cardList, inputPlace, inputLinkPlace, buttonCreate, buttonClose, buttonEdit, buttonEditPlace, buttonPlaceClose, zoomCloseButton, 
-profilePopup, inputJob, profileName, inputName, profileJob, buttonSave, formPlace, formProfile, placePopup, validationConfig} from './utils';
+profilePopup, inputJob, profileName, inputName, profileJob, buttonSave, formPlace, formProfile, placePopup,imagePopup, validationConfig, avatarPopup,
+buttonAvatarClose, buttonSaveAvatar, inputAvatar, avatarImage, buttonEditAvatar, formAvatar, loading} from './utils';
 
-import { createCard } from './card';
+import { createCard, updateLikeState } from './card';
 
 import {checkInputValidity, toggleButtonState } from './validate';
 
 import {openPopup, closePopup} from './modal';
 
+import {getAllCards, appendCard, editCard, getProfileInfo, getAllInfo, editProfileInfo, editProfileImage, changeLikeStatus } from './api';
 
 buttonEdit.addEventListener("click", ()=> openPopup(profilePopup));
 
@@ -22,6 +24,24 @@ buttonPlaceClose.addEventListener("click", ()=> closePopup(placePopup));
 
 zoomCloseButton.addEventListener("click", ()=> closePopup(imagePopup));
 
+buttonEditAvatar.addEventListener("click", ()=> openPopup(avatarPopup));
+
+buttonAvatarClose.addEventListener("click", ()=> closePopup(avatarPopup));
+
+let userId = null;
+
+getAllInfo()
+.then(([cards, user]) => {
+  profileName.textContent = user.name;
+  profileJob.textContent = user.about;
+  avatarImage.src = user.avatar;
+  userId = user._id 
+
+  cards.reverse().forEach((data) => {
+    addCard(data, cardList, userId)
+  })
+});
+
 
 function openProfilePopup() { 
     inputName.value = profileName.textContent; 
@@ -34,43 +54,93 @@ function openProfilePopup() {
   };
 
 
-  const addCard = (data, container) => {
-    const card = createCard(data);
-    
+const handleChangeLikeStatus = (cardId, isLiked, cardElement) => {
+  changeLikeStatus(cardId, isLiked)
+    .then((dataFromServer) => {
+      updateLikeState(cardElement, dataFromServer.likes, userId)
+    })
+}
+
+  const addCard = (data, container, userId) => {
+    const card = createCard(data, userId, handleChangeLikeStatus);
     container.prepend(card);
 }
-  
-initialCards.forEach(function(item) {
-      addCard(item, cardList);
-});
 
   
 const renderCard = (evt) => {
   evt.preventDefault();
+  loading(buttonCreate, true)
   const cardInfo = { 
     name: inputPlace.value, 
     link: inputLinkPlace.value,
+    owner: {_id: userId},
+    
   }  
-  formPlace.reset();
-
-  addCard(cardInfo, cardList);
-  toggleButtonState(buttonCreate, false, validationConfig);
+  appendCard(cardInfo)
+    .then((dataFromServer) => {
+      formPlace.reset();
+      addCard(dataFromServer, cardList, userId);
+      toggleButtonState(buttonCreate, false, validationConfig);
+      closePopup(placePopup);
+      loading(buttonCreate, false, false)
+  }) 
   
-  closePopup(placePopup);
+
+  
 }
 
 
 
 function fixProfile(evt) {
     evt.preventDefault();
-
+    loading(buttonSave, true);
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
+    let dataId = {
+      name: profileName.textContent, 
+      about: profileJob.textContent, 
+      link: 'users/me'}
 
-    closePopup(profilePopup);
+      editProfileInfo(dataId).then((dataFromServer)=> {
+      closePopup(profilePopup);
+      loading(buttonSave, false)
+  
+    } )
+
+    
 }
 
+
+function addAvatar(evt) {
+  evt.preventDefault();
+
+  loading(buttonSaveAvatar, true)
+  avatarImage.src = inputAvatar.value;
+  avatarImage.alt = inputAvatar.name;
+  let dataId = {
+    avatar: avatarImage.src
+  }
+ 
+  
+
+  editProfileImage(dataId)
+    .then((dataFromServer) =>{
+  toggleButtonState(buttonSaveAvatar, false, validationConfig);
+
+    avatarImage.src = dataFromServer.avatar
+    formAvatar.reset();
+    closePopup(avatarPopup);
+    loading(buttonSaveAvatar, false)
+  })}
+  
+
+
+// getAllCards();
+formAvatar.addEventListener("submit", addAvatar);
 
 formProfile.addEventListener("submit", fixProfile);
 
 formPlace.addEventListener("submit", renderCard);
+
+
+export { userId};

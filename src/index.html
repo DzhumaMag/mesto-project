@@ -14,7 +14,11 @@
         <main class="content">
             <section class="profile content__profile">
                 <div class="profile__info">
-                    <img class="profile__photo" src="<%=require('./images/image.jpg')%>" alt="мужчина в красной шапке"></img>
+                    <div class="profile__avatar">
+                        <img class="profile__photo" src="<%=require('./images/image.jpg')%>" alt="мужчина в красной шапке">
+                            <button type="button" class="profile__avatar-edit"></button>
+                        </img>
+                    </div>
                     <div class="profile__about">
                         <div class="profile__name-edit"> 
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -32,7 +36,10 @@
                         <img class="card__photo" alt="" src="">
                         <div class="card__name">
                             <h2 class="card__place"></h2>
-                            <button type="button" class="card__like"></button>
+                            <div class="card__like-wrapper">
+                                <button type="button" class="card__like-button"></button>
+                                <span class="card__like-counter">0</span>
+                            </div>
                         </div>
                     </article>
                 </template>
@@ -73,7 +80,7 @@
                         class="popup__input popup__input_type_profession">
                         <span id="profession-input-error" class="form__input-error"></span>
                     </label>
-                    <button type="submit" class="popup__save popup__save_button_save popup__save_invalid" disabled>Сохранить</button>
+                    <button type="submit" class="popup__save popup__save_button_save popup__save_invalid" disabled>Сохранить</button>  
                 </form>
             </div>
         </div>
@@ -115,6 +122,25 @@
                 <button type="button" class="popup__close popup__close_type_zoom focus"></button>
                 <img src="/" alt="" class="popup__image">
                 <p class="popup__title_type_zoom"></p>
+            </div>
+        </div>
+        <div class="popup popup__avatar">
+            <div class="popup__container popup__container_type_avatar">
+                <button type="button" class="popup__close popup__close_type_avatar focus"></button>
+                <form class="popup__body popup__body_type_avatar popup__form" name="avatar-form" novalidate>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <label class="form__field">
+                        <input 
+                        required
+                        id="avatar-input"
+                        type="url"
+                        name="link-avatar"
+                        value=""
+                        class="popup__input popup__input_type_avatar">
+                        <span id="avatar-input-error" class="form__input-error"></span>
+                    </label>
+                    <button type="submit" class="popup__save popup__save_button_avatar popup__save_invalid">Сохранить</button>
+                </form>
             </div>
         </div>
 </body>
