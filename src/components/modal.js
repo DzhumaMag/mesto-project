@@ -13,7 +13,7 @@ function openPopup(popup) {
 
   function closeByOverlay(evt) {
     if(evt.target.classList.contains('popup')) {
-      closePopup(popup)
+      closePopup(evt.target)  // спасибо!!!
     } 
   }
   

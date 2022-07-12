@@ -128,8 +128,7 @@ function addAvatar(evt) {
   evt.preventDefault();
 
   loading(buttonSaveAvatar, true)
-  avatarImage.src = inputAvatar.value;
-  avatarImage.alt = inputAvatar.name;
+
   const dataId = {
     avatar: avatarImage.src
   }
@@ -138,6 +137,8 @@ function addAvatar(evt) {
 
   editProfileImage(dataId)
     .then((dataFromServer) =>{
+      avatarImage.src = inputAvatar.value;
+      avatarImage.alt = inputAvatar.name;
     toggleButtonState(buttonSaveAvatar, false, validationConfig);
 
     avatarImage.src = dataFromServer.avatar
